@@ -1,29 +1,28 @@
 {
     "apps": [
       {
-        "name": "{{App name}}",
-        "script": "./bin/www",
-
+        "name": "zeplin-server",
+        "script": "./dist/src/server.js",
         "env": {
         }
       }
     ],
     "deploy": {
-      "{{env}}": { 
-        "key": "{{path to ssh keyfile}}",
+      "development": {
+        "key": "/Users/edenbinyamin/Downloads/skill-server.pem",
         "user": "ubuntu",
         "host": [
-            "{{hostname}}"
+          "zeplin.moveodevelop.com"
         ],
-        "ref": "origin/{{branch to pull from}}",
-        "repo": "{{ssh url, taken from github}}",
-        "path": "/home/ubuntu/{{app name}}",
+        "ref": "origin/master",
+        "repo": "git@github.com:edenb-moveo/zeplin-server.git",
+        "path": "/home/ubuntu/zeplin-server",
         "ssh_options": "StrictHostKeyChecking=no",
-        "post-deploy": "cp ~/.env . && apidoc -i apidoc -o webApidoc && npm install && mkdir -p logs && pm2 startOrRestart ecosystem.json --env {{env}}&& pm2 save",
+        "post-deploy" : "mkdir -p logs && ./install-build-del-source.sh && pm2 reload ecosystem.json --env development",
+        "pre-deploy-local" : "echo 'Deploying code to servers'",
         "env": {
-          "NODE_ENV": "{{env}}"
+          "NODE_ENV": "development"
         }
       }
     }
-  }
- 
+}
