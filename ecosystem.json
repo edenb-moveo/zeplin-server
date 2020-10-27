@@ -1,0 +1,29 @@
+{
+    "apps": [
+      {
+        "name": "{{App name}}",
+        "script": "./bin/www",
+
+        "env": {
+        }
+      }
+    ],
+    "deploy": {
+      "{{env}}": { 
+        "key": "{{path to ssh keyfile}}",
+        "user": "ubuntu",
+        "host": [
+            "{{hostname}}"
+        ],
+        "ref": "origin/{{branch to pull from}}",
+        "repo": "{{ssh url, taken from github}}",
+        "path": "/home/ubuntu/{{app name}}",
+        "ssh_options": "StrictHostKeyChecking=no",
+        "post-deploy": "cp ~/.env . && apidoc -i apidoc -o webApidoc && npm install && mkdir -p logs && pm2 startOrRestart ecosystem.json --env {{env}}&& pm2 save",
+        "env": {
+          "NODE_ENV": "{{env}}"
+        }
+      }
+    }
+  }
+ 
