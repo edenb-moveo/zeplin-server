@@ -24,4 +24,4 @@ class DishService {
     }
 }
 exports.DishService = DishService;
-//# sourceMappingURL=dishService.js.map
+//# sourceMappingURL=DishService.js.map

@@ -2,12 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.HomepageHandler = void 0;
 const ChefService_1 = require("../services/ChefService");
-const dishService_1 = require("../services/dishService");
+const DishService_1 = require("../services/DishService");
 const RestaurantService_1 = require("../services/RestaurantService");
 class HomepageHandler {
     constructor() {
         this.chefService = new ChefService_1.ChefService();
-        this.dishService = new dishService_1.DishService();
+        this.dishService = new DishService_1.DishService();
         this.RestaurantService = new RestaurantService_1.RestaurantService();
     }
     async getHomepageData() {

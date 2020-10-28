@@ -17,7 +17,7 @@ class App {
         });
     }
     initRoutes() {
-        this.app.use('', this.routes.router);
+        this.app.use('/api', this.routes.router);
     }
     initApp() {
         this.app.use(bodyParser.json());
