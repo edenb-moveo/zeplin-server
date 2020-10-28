@@ -1,5 +1,5 @@
 import { ChefService } from '../services/ChefService'
-import { DishService } from '../services/dishService'
+import { DishService } from '../services/DishService'
 import { RestaurantService } from '../services/RestaurantService'
 
 export class HomepageHandler {
