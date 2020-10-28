@@ -21,7 +21,7 @@ class App {
     }
 
     private initRoutes() { 
-        this.app.use('/api/',this.routes.router);
+        this.app.use('/api',this.routes.router);
     }
 
     private initApp(){
