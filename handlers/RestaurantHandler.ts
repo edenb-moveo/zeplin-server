@@ -75,4 +75,22 @@ export class RestaurantHandler {
             throw new Error(error)
         }
     }
+
+    public async updateRestaurant(restaurant) {
+        try {
+            let updatedRestaurant = await this.restraurantService.updateRestaurant(restaurant);
+            return updatedRestaurant;
+        } catch (error) {
+            throw new Error(error)
+        }
+    }
+
+    public async deleteRestaurant(id) {
+        try {
+            let deletedRestaurant = await this.restraurantService.deleteRestaurant(id);
+            return deletedRestaurant
+        } catch (error) {
+            throw new Error(error)
+        }
+    }
 }

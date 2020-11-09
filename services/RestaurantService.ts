@@ -62,6 +62,29 @@ export class RestaurantService {
         return data;
     }
 
+    public async updateRestaurant(restaurant) {
+        let restaurantToUpdate = await Restaurant.findById(restaurant._id);
+        if(restaurant.name) {
+            restaurantToUpdate.name = restaurant.name
+        }
+        if(restaurant.chefName) {
+            restaurantToUpdate.chefName = restaurant.chefName
+        }
+        if(restaurant.startTime) {
+            restaurantToUpdate.startTime = restaurant.startTime
+        }
+        if(restaurant.closeTime) {
+            restaurantToUpdate.closeTime = restaurant.closeTime
+        }
+        await restaurantToUpdate.save()
+        return restaurantToUpdate;
+    }
+
+    public async deleteRestaurant(id) {
+        let restaurantToBeDeleted = await Restaurant.deleteOne({_id: id});
+        return restaurantToBeDeleted;
+    }
+
     private buildRestaurantSchema(restaurant, breakFastDishes, lunchDishes) {
         let schema = {
             img: restaurant.heroImg,

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const DishModel = require('../db/models/DishModel')
+const Dish = require('../db/models/DishModel')
 
 export class DishService {
     constructor(){
@@ -12,14 +12,33 @@ export class DishService {
 
     public async getHomepageDishes() {
         let dishes = [];
-        dishes.push(await DishModel.findById("5f915309da122e9953314661"))
-        dishes.push(await DishModel.findById("5f915309da122e9953314662"))
-        dishes.push(await DishModel.findById("5f915309da122e9953314663"))
+        dishes.push(await Dish.findById("5f915309da122e9953314661"))
+        dishes.push(await Dish.findById("5f915309da122e9953314662"))
+        dishes.push(await Dish.findById("5f915309da122e9953314663"))
         return dishes
     }
 
     public async postNewDish(dishDetails) {
-        let dish = await DishModel(dishDetails).save();
+        let dish = await Dish(dishDetails).save();
         return dish._id
+    }
+
+    public async deleteDish(id) {
+        let deletedDish = await Dish.deletOne({_id: id});
+        return deletedDish;
+    }
+
+    public async updateDish(dish) {
+        let updatedDish = await Dish.findById(dish._id);
+        if(dish.name) {
+            updatedDish.name = dish.name
+        }
+        if( dish.ingredients ) {
+            updatedDish.ingredients = dish.ingredients
+        }
+
+        if(dish.price) {
+            updatedDish.price = dish.price
+        }
     }
 }
