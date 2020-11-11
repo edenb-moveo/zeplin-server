@@ -26,13 +26,17 @@ export class AuthHandler {
 
     public async login (userInfo) {
         let user = await this.userService.getUser(userInfo); 
-        console.log(user);
-        let isPasswordValid = this.userService.isPasswordValid(user, userInfo.password)
+        let isPasswordValid = await this.userService.isPasswordValid(user, userInfo.password)
         let token;
         if( user && isPasswordValid ) {
             token = jwt.sign({ id: user._id }, config.secret, {
                 expiresIn: 86400 
             });
+        }
+        else {
+            return ({
+                error: "Wrong email Or Password!"
+            })
         }
         return({  
             email: user.email,

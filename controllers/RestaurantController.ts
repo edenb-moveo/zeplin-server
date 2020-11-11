@@ -27,7 +27,7 @@ export class RestaurantController {
     }
 
     public async getRestaurantPageData(req, res) {
-        let restaurant = await this.restaurantHandler.getRestaurantPageData(req.params.name);
+        let restaurant = await this.restaurantHandler.getRestaurantPageData(req.params.id);
         res.send(restaurant)
     }
 

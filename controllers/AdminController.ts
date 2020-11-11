@@ -7,6 +7,7 @@ export class AdminController {
         this.postNewRestaurant = this.postNewRestaurant.bind(this)
         this.updateRestaurant = this.updateRestaurant.bind(this);
         this.deleteRestaurant = this.deleteRestaurant.bind(this);
+        this.getAllDishes = this.getAllDishes.bind(this);
         this.postNewDish = this.deleteRestaurant.bind(this);
         this.updateDish = this.updateDish.bind(this);
         this.deleteDish = this.deleteDish.bind(this);
@@ -25,6 +26,11 @@ export class AdminController {
     public async deleteRestaurant(req, res) {
         let deletedRestaurant = await this.adminHandler.deleteRestaurant(req._id);
         res.send(deletedRestaurant);
+    }
+
+    public async getAllDishes(req,res) {
+        let dishes = await this.adminHandler.getAllDishes();
+        res.send(dishes);
     }
 
     public async postNewDish(req, res) {

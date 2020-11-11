@@ -33,10 +33,20 @@ export class AdminHandler {
         }
     }
 
+
     public async deleteRestaurant(id) {
         try {
             let deletedRestaurant = await this.restaurantHandler.deleteRestaurant(id);
             return deletedRestaurant
+        } catch (error) {
+            throw new Error(error)
+        }
+    }
+
+    public async getAllDishes() {
+        try {
+            let dishes = await this.dishService.getAllDishes();
+            return dishes;
         } catch (error) {
             throw new Error(error)
         }

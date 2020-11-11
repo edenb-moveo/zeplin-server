@@ -23,13 +23,18 @@ export class DishService {
         return dish._id
     }
 
+    public async getAllDishes() {
+        let dishes = await Dish.find({});
+        return dishes;
+    }
+
     public async deleteDish(id) {
         let deletedDish = await Dish.deletOne({_id: id});
         return deletedDish;
     }
 
     public async updateDish(dish) {
-        let updatedDish = await Dish.findById(dish._id);
+        let updatedDish = await Dish.findById(dish.id);
         if(dish.name) {
             updatedDish.name = dish.name
         }
@@ -40,5 +45,7 @@ export class DishService {
         if(dish.price) {
             updatedDish.price = dish.price
         }
+        await updatedDish.save();
+        return updatedDish;
     }
 }

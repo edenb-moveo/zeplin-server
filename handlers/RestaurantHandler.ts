@@ -51,12 +51,12 @@ export class RestaurantHandler {
             let breakFastDishes = [];
             let lunchDishes = [];
             for(let i = 0; i<restaurant.breakFastDishes.length;i++) {
-                let dish = await this.dishService.postNewDish(restaurant.breakFastDishes[i])
-                breakFastDishes.push(dish)
+                let id = await this.dishService.postNewDish(restaurant.breakFastDishes[i])
+                breakFastDishes.push(id)
             }
             for( let i = 0; i<restaurant.lunchDishes.length; i++) {
-                let dish = await this.dishService.postNewDish(restaurant.lunchDishes[i])
-                lunchDishes.push(dish) 
+                let id = await this.dishService.postNewDish(restaurant.lunchDishes[i])
+                lunchDishes.push(id) 
             }
             let newRestaurnt = await this.restraurantService.postNewRestaurant(restaurant, breakFastDishes, lunchDishes);
             return newRestaurnt;
@@ -66,9 +66,9 @@ export class RestaurantHandler {
         }
     }
 
-    public async getRestaurantPageData(name: string) {
+    public async getRestaurantPageData(id: string) {
         try {
-            let restaurant = await this.restraurantService.getRestaurantPageData(name)
+            let restaurant = await this.restraurantService.getRestaurantPageData(id)
             return restaurant
         }
         catch(error) {

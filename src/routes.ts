@@ -27,12 +27,13 @@ export class Routes {
         this.router.get('/restaurants/new', this.restaurantController.getNewRestauratns)
         this.router.get('/restaurants/open-now', this.restaurantController.getOpenNowRestaurants)
         this.router.get('/restaurants/popular-restaurants', this.restaurantController.getPopularRestaurants)
-        this.router.get('/restaurant/:name', this.restaurantController.getRestaurantPageData)
+        this.router.get('/restaurant/:id', this.restaurantController.getRestaurantPageData)
         this.router.post('/signup', this.authController.signUp);
-        this.router.get('/login', this.authController.login);
+        this.router.post('/login', this.authController.login);
         this.router.post('/restaurants', [ this.authValidator.verifyToken, this.adminController.postNewRestaurant ])
         this.router.patch('/restaurants', [ this.authValidator.verifyToken, this.adminController.updateRestaurant ])
         this.router.delete('/restaurants',[ this.authValidator.verifyToken, this.adminController.deleteRestaurant ])
+        this.router.get('/dishes', this.adminController.getAllDishes )
         this.router.post('/dishes', [ this.authValidator.verifyToken, this.adminController.postNewDish ])
         this.router.patch('/dishes', [ this.authValidator.verifyToken, this.adminController.updateDish ])
         this.router.delete('/dishes',[ this.authValidator.verifyToken, this.adminController.deleteDish ])

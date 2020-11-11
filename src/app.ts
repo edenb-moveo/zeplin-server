@@ -29,14 +29,13 @@ class App {
         this.app.use(bodyParser.json());
         this.app.use(bodyParser.urlencoded({ extended: true }));	
 
-        this.app.use(function (req: express.Request, res: express.Response, next: express.NextFunction) {
-            res.header("Access-Control-Allow-Origin", "*");
-            res.header("Access-Control-Allow-Credentials", "true");
-            res.header('Access-Control-Allow-Methods','PUT, GET, POST, DELETE, OPTIONS');
-            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        this.app.use( (req, res, next) =>{
+            res.setHeader("Access-Control-Allow-Origin", "*");
+            res.setHeader("Access-Control-Allow-Credentials", "true");
+            res.setHeader('Access-Control-Allow-Methods','PUT, GET, POST, PATCH, DELETE, OPTIONS');
+            res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
             next();
         });
-
     }
 
 

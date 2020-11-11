@@ -1,3 +1,5 @@
+import { RestaurantModel } from "../db/models/RestaurantModel";
+
 const Restaurant = require('../db/models/RestaurantModel')
 const mongoose = require('mongoose');
 
@@ -52,18 +54,19 @@ export class RestaurantService {
     }
 
     public async postNewRestaurant(restaurant, breakFastDishes, lunchDishes) {
+
         let restaurantSchema = this.buildRestaurantSchema(restaurant, breakFastDishes,lunchDishes);
         let newRestaurant = await Restaurant(restaurantSchema).save();
         return newRestaurant
     }
 
-    public async getRestaurantPageData(name: string) {
-        let data = await Restaurant.findOne({name: name}).populate('breakFastDishes').populate('lunchDishes')
+    public async getRestaurantPageData(id: string) {
+        let data = await Restaurant.findById(id).populate('breakFastDishes').populate('lunchDishes')
         return data;
     }
 
     public async updateRestaurant(restaurant) {
-        let restaurantToUpdate = await Restaurant.findById(restaurant._id);
+        let restaurantToUpdate = await Restaurant.findById(restaurant.id);
         if(restaurant.name) {
             restaurantToUpdate.name = restaurant.name
         }

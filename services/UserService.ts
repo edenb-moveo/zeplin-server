@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const User = require("../db/models/UserModel");
 const bcrypt = require("bcryptjs");
-
+// var hash = bcrypt.hashSync('bacon', 8);
 export class UserService {
     constructor(){
         mongoose.connect('mongodb://127.0.0.1:27017/epicure', {
@@ -22,7 +22,7 @@ export class UserService {
     }
 
     public async isPasswordValid(user, password) {
-        let isPasswordValid = await bcrypt.compareSync( password, user.password );
+        let isPasswordValid = await bcrypt.compareSync( password, user.password)
         return isPasswordValid;
     }
     
