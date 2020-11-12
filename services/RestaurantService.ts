@@ -76,6 +76,9 @@ export class RestaurantService {
         if(restaurant.startTime) {
             restaurantToUpdate.startTime = restaurant.startTime
         }
+        if(restaurant.popularity) {
+            restaurantToUpdate.popularity = restaurant.popularity
+        }
         if(restaurant.closeTime) {
             restaurantToUpdate.closeTime = restaurant.closeTime
         }
