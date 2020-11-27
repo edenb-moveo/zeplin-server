@@ -4,6 +4,7 @@ import { HomepageController } from '../controllers/HomepageController'
 import { RestaurantController } from '../controllers/RestaurantController';
 import { AuthValidator } from '../validators/authValidator'
 import { AdminController } from '../controllers/AdminController'
+import { MipneySeyvaController } from '../controllers/MipneySeyvaController';
 export class Routes {
     public router: express.Router
     private hompageController: HomepageController;
@@ -11,6 +12,7 @@ export class Routes {
     private authController: AuthController;
     private authValidator: AuthValidator;
     private adminController: AdminController;
+    private mipneySeyvaController: MipneySeyvaController;
     constructor() {
         this.router = express.Router()
         this.hompageController = new HomepageController();
@@ -18,6 +20,7 @@ export class Routes {
         this.authController = new AuthController();
         this.authValidator = new AuthValidator();
         this.adminController = new AdminController();
+        this.mipneySeyvaController = new MipneySeyvaController();
         this.initRoutes();
     }
 
@@ -37,6 +40,9 @@ export class Routes {
         this.router.post('/dishes', [ this.authValidator.verifyToken, this.adminController.postNewDish ])
         this.router.patch('/dishes', [ this.authValidator.verifyToken, this.adminController.updateDish ])
         this.router.delete('/dishes',[ this.authValidator.verifyToken, this.adminController.deleteDish ])
+        this.router.get('/MipneySeyva', this.mipneySeyvaController.getRoom)
+        this.router.post('/MipneySeyva', this.mipneySeyvaController.createRoom)
+        this.router.delete('/MipneySeyva', this.mipneySeyvaController.deleteRoom)
     }
 
 }
