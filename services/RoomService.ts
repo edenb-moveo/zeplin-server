@@ -21,7 +21,7 @@ export class RoomService {
     }
 
     public async deleteRoom(id) {
-        let deletedRoom = await RoomModel.deletOne({_id: id});
+        let deletedRoom = await RoomModel.deleteOne({_id: id});
         return deletedRoom;
     }
 }
